@@ -18,9 +18,7 @@ public class CatalogueController {
     @Autowired
     private ReviewProxy reviewProxy;
     @GetMapping("/get-games")
-    public List<Game> allGames(){
+    public List<Game> allGames() {
         return gameProxy.allGames();
     }
-
-
 }
