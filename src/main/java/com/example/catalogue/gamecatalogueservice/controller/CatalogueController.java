@@ -1,9 +1,11 @@
 package com.example.catalogue.gamecatalogueservice.controller;
 
 import com.example.catalogue.gamecatalogueservice.dto.Game;
+import com.example.catalogue.gamecatalogueservice.dto.GameStat;
 import com.example.catalogue.gamecatalogueservice.dto.Review;
 import com.example.catalogue.gamecatalogueservice.proxy.GameProxy;
 import com.example.catalogue.gamecatalogueservice.proxy.ReviewProxy;
+import com.example.catalogue.gamecatalogueservice.service.StatsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,9 @@ public class CatalogueController {
     @Autowired
     private ReviewProxy reviewProxy;
 
+    @Autowired
+    private StatsService statsService;
+
     @GetMapping("/get-games")
     public List<Game> allGames() {
         return gameProxy.allGames();
@@ -32,5 +37,10 @@ public class CatalogueController {
     @PostMapping("/review-game")
     public ResponseEntity<HttpStatus> reviewGame(@RequestBody Review review){
         return reviewProxy.reviewGame(review);
+    }
+
+    @GetMapping("/stats")
+    public List<GameStat> reviewStats(){
+        return statsService.stats();
     }
 }
